@@ -11,6 +11,10 @@ jobs:
           flutter-version: '3.19.0'
           channel: 'stable'
       
+      # İŞTE SİHİRLİ DOKUNUŞ BURASI
+      # Bu komut eksik olan Android klasörlerini yaratacak
+      - run: flutter create .
+      
       - run: flutter pub get
       
       - run: flutter build apk --release --no-tree-shake-icons
@@ -19,4 +23,3 @@ jobs:
         with:
           name: blind-id-apk
           path: build/app/outputs/flutter-apk/app-release.apk
-          
