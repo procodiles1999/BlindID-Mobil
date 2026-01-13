@@ -1,4 +1,3 @@
-
 name: APK Yapici
 on: [push]
 jobs:
@@ -12,9 +11,12 @@ jobs:
           flutter-version: '3.19.0'
           channel: 'stable'
       
-      # İŞTE DÜZELTME BURADA:
-      # Klasör ismini görmezden gel, ismini 'blind_id_app' yap diyoruz.
+      # 1. TEMELİ AT (Klasörleri oluştur)
       - run: flutter create --project-name blind_id_app .
+      
+      # 2. SİHİRLİ DOKUNUŞ (İnternet İznini Zorla Ekle)
+      - run: |
+          sed -i 's|<application|<uses-permission android:name="android.permission.INTERNET"/>\n    <application|g' android/app/src/main/AndroidManifest.xml
       
       - run: flutter pub get
       
@@ -24,4 +26,3 @@ jobs:
         with:
           name: blind-id-apk
           path: build/app/outputs/flutter-apk/app-release.apk
-          
